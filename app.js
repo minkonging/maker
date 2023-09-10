@@ -2,11 +2,19 @@ const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 canvas.width = 800;
 canvas.height = 800;
+ctx.lineWidth = 2;
+let isPainting = false;
 
-ctx.moveTo(50, 50);
-ctx.lineTo(150, 50);
-ctx.lineTo(150, 150);
-ctx.lineTo(50, 150);
-ctx.lineTo(50, 50);
-ctx.fill();
+function onMove(event){
+    ctx.moveTo(event.offsetX, event.offsetY);
+}
+function onMouseDown(){
+    isPainting = true;
+}
+function onMouseUp() {
+    isPainting = false;
+}
 
+canvas.addEventListener("mousemove", onMove);
+canvas.addEventListener("mousedown", onMouseDown);
+canvas.addEventListener("mouseup", onMouseUp);
